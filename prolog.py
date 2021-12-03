@@ -19,6 +19,8 @@ def prepare_facts(rules_filename='rules.pl') -> Prolog:
 
     for city in get_data():
         name = to_snake_case(city['city']['name'])
+        if not name.isalpha():
+            continue
         max_temp = kelvin_to_celsius(city['main']['temp_min'])
         min_temp = kelvin_to_celsius(city['main']['temp_max'])
         humidity = city['main']['humidity']
@@ -40,7 +42,20 @@ def prepare_facts(rules_filename='rules.pl') -> Prolog:
                 p.asserta(f'lloviendo({name})')
             if state == 'Snow':
                 p.asserta(f'nevando({name})')
+            if state == 'Clear':
+                p.asserta(f'soleado({name})')
 
     p.consult(rules_filename)
 
     return p
+
+def query_cities_with_weather(weather: str, p: Prolog) -> list[str]:
+    result: list[str] = []
+
+    try:
+        for solution in p.query(f'{weather}(X)'):
+            result.append(from_snake_case(solution['X']))
+    except Exception as _:
+        pass
+
+    return result

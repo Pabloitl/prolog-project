@@ -29,8 +29,6 @@ sin_viento(X) :- velocidad_viento(X, Velocidad), Velocidad < 10.
 nublado(X)   :- clouds(X, Pct), Pct >= 50.
 despejado(X) :- clouds(X, Pct), Pct < 50.
 
-soleado(X)   :- not(lloviendo(X)), not(nevando(X)).
-
 %%%%%%%%%%%%%%%%%%%%
 % Climas generales %
 %%%%%%%%%%%%%%%%%%%%
@@ -44,5 +42,5 @@ clima_polar(X)    :- frio(X), nevando(X).
 %%%%%%%%%%%%%%%%%%%%%%
 
 clima_tropical(X) :- clima_calido(X), humedo(X).
-clima_seco(X) :- despejado(X), soleado(X).
+clima_seco(X)     :- despejado(X), soleado(X).
 clima_moderado(X) :- templado(X), estable(X), sin_viento(X), soleado(X).
