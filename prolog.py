@@ -23,7 +23,7 @@ def prepare_facts(rules_filename='rules.pl') -> Prolog:
         min_temp = kelvin_to_celsius(city['main']['temp_max'])
         humidity = city['main']['humidity']
         wind_speed = city['wind']['speed']
-        clouds_pct = city['clouds']['all']
+        clouds = city['clouds']['all']
 
         if max_temp < min_temp:
             max_temp, min_temp = min_temp, max_temp
@@ -31,7 +31,7 @@ def prepare_facts(rules_filename='rules.pl') -> Prolog:
         p.asserta(f'rango_temperatura({name}, {min_temp}, {max_temp})')
         p.asserta(f'humedad({name}, {humidity})')
         p.asserta(f'velocidad_viento({name}, {wind_speed})')
-        p.asserta(f'clouds_pct({name}, {clouds_pct})')
+        p.asserta(f'clouds({name}, {clouds})')
 
         for clima in city['weather']:
             state = clima['main']
