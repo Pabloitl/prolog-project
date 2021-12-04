@@ -8,6 +8,7 @@
 %clouds(x, pct)
 %lloviendo(x)
 %nevando(x)
+%soleado(X)
 
 %%%%%%%%%%%%%%%%%%
 % Reglas         %

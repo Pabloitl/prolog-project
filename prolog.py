@@ -59,3 +59,14 @@ def query_cities_with_weather(weather: str, p: Prolog) -> list[str]:
         pass
 
     return result
+
+def custom_query(query: str, p: Prolog) -> list[str]:
+    result: list[str] = []
+
+    try:
+        for solution in p.query(query):
+            result.append(from_snake_case(solution['X']))
+    except Exception as _:
+        pass
+
+    return result
