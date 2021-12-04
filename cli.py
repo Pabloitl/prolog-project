@@ -17,7 +17,7 @@ main_menu_options = [
 def show_main_menu(screen, options: list[str]):
     y, x = screen.getmaxyx()
     max_len = max(list(map(len, options)))
-    x = x // 2 - max_len
+    x = x // 2 - max_len // 2
     y = (y - len(options)) // 2
 
     screen.clear()
