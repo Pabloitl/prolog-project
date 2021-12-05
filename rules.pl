@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%
+﻿%%%%%%%%%%%%%%%%%%
 % Hechos         %
 %%%%%%%%%%%%%%%%%%
 
@@ -14,6 +14,7 @@
 % Reglas         %
 %%%%%%%%%%%%%%%%%%
 
+gelido(X)    :- rango_temperatura(X, _, Max), Max =< -30.
 frio(X)      :- rango_temperatura(X, _, Max), Max =< 10.
 templado(X)  :- rango_temperatura(X, Min, Max), Min > 10, Max =< 30.
 caliente(X)  :- rango_temperatura(X, Min, _), Min > 30.
@@ -45,3 +46,18 @@ clima_polar(X)    :- frio(X), nevando(X).
 clima_tropical(X) :- clima_calido(X), humedo(X).
 clima_seco(X)     :- despejado(X), soleado(X).
 clima_moderado(X) :- templado(X), estable(X), sin_viento(X), soleado(X).
+
+
+%%%%%%%%%
+% Biome %
+%%%%%%%%%
+
+% Y is latitude %
+
+tundra(X, Y) :- clima_polar(X) , Y >= 60 , Y <= 75.
+bosque(X, Y) :- clima_templado(X), Y >= 35 , Y <= 55.
+selva(X, Y)  :- clima_tropical(X), Y >= 0 , Y <= 10.
+pradera(X)   :- clima_templado(X) ; clima_tropical(X) , not(bosque).
+desierto(X)  :- clima_seco(X), seco(X).
+taiga(X)     :- clima_polar(X), gelido(X).
+sabana(X)    :- clima_tropical(X), pradera(X).
