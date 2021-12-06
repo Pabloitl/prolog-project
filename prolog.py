@@ -58,7 +58,7 @@ def query_cities_with_weather(weather: str, p: Prolog) -> list[str]:
     except Exception as _:
         pass
 
-    return result
+    return list(set(result))
 
 def custom_query(query: str, p: Prolog) -> list[str]:
     result: list[str] = []
@@ -69,4 +69,4 @@ def custom_query(query: str, p: Prolog) -> list[str]:
     except Exception as _:
         pass
 
-    return result
+    return list(set(result))

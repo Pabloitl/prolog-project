@@ -11,6 +11,8 @@ main_menu_options = [
     "Ver climas tropicales",
     "Ver climas secos",
     "Ver climas moderados",
+    "Ver biomas pradera",
+    "Ver biomas desierto",
     "Tomar test"
 ]
 
@@ -23,7 +25,7 @@ def show_main_menu(screen, options: list[str]):
     screen.clear()
     for i, option in enumerate(options):
         try:
-            screen.addstr(y + i, x, f'{i} → {option}')
+            screen.addstr(y + i, x, f'{i:x} → {option}')
         except Exception as _:
             pass
     screen.refresh()
@@ -124,6 +126,10 @@ def handle_option(screen, option, p: Prolog):
     if option == ord('5'):
         show_list(screen, prolog.query_cities_with_weather('clima_moderado', p))
     if option == ord('6'):
+        show_list(screen, prolog.query_cities_with_weather('bioma_pradera', p))
+    if option == ord('7'):
+        show_list(screen, prolog.query_cities_with_weather('bioma_desierto', p))
+    if option == ord('8'):
         show_list(screen, prolog.custom_query(run_test(screen), p))
 
 def main(screen):
