@@ -45,3 +45,12 @@ clima_polar(X)    :- frio(X), nevando(X).
 clima_tropical(X) :- clima_calido(X), humedo(X).
 clima_seco(X)     :- despejado(X), soleado(X).
 clima_moderado(X) :- templado(X), estable(X), sin_viento(X), soleado(X).
+clima_monzonico(X) :- lloviendo(X),clima_calido(X), humedo(X).
+
+%%%%%%%%%%
+% Biomas %
+%%%%%%%%%%
+
+bioma_tundra(X) :- frio(X), ventisca(X).
+bioma_mediterraneo(X) :- templado(X), clima_calido(X),lloviendo(X); humedo(x), templado(X).
+bioma_estepa(X) :- clima_seco(X),caliente(X); clima_polar(X),seco(X).

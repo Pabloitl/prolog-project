@@ -11,6 +11,10 @@ main_menu_options = [
     "Ver climas tropicales",
     "Ver climas secos",
     "Ver climas moderados",
+    "Ver clima monzonico",
+    "Ver biomas tundra",
+    "Ver biomas mediterraneo",
+    "Ver biomas estepa",
     "Tomar test"
 ]
 
@@ -124,6 +128,14 @@ def handle_option(screen, option, p: Prolog):
     if option == ord('5'):
         show_list(screen, prolog.query_cities_with_weather('clima_moderado', p))
     if option == ord('6'):
+        show_list(screen, prolog.query_cities_with_weather('clima_monzonico', p))
+    if option == ord('7'):
+        show_list(screen, prolog.query_cities_with_weather('bioma_tundra', p))
+    if option == ord('8'):
+        show_list(screen, prolog.query_cities_with_weather('bioma_mediterraneo', p))
+    if option == ord('9'):
+        show_list(screen, prolog.query_cities_with_weather('bioma_estepa', p))
+    if option == ord('10'):
         show_list(screen, prolog.custom_query(run_test(screen), p))
 
 def main(screen):
